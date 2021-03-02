@@ -1,3 +1,3 @@
-import Typography from "@material-ui/core/Typography";
+import SignupLoginForm from "../SignupLoginForm/SignupLoginForm";
 
-export default () => <Typography>Hello Gamer</Typography>;
+export default () => <SignupLoginForm signupForm />;
