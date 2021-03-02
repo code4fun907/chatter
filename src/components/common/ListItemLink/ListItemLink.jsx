@@ -10,7 +10,7 @@ const ListItemLink = ({ icon, primary, to, onClick }) => {
       forwardRef((itemProps, ref) => (
         <RouterLink to={to} ref={ref} {...itemProps} onClick={onClick} />
       )),
-    [to]
+    [to, onClick]
   );
 
   return (

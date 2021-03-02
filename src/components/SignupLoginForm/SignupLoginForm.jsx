@@ -1,6 +1,6 @@
 import { useAuth } from "../../contexts/AuthContext";
 import { useState } from "react";
-import { validateEmailPassword } from "../../utils/authUtils";
+// import { validateEmailPassword } from "../../utils/authUtils";
 import { Link, useHistory } from "react-router-dom";
 import useStyles from "./styles";
 import Container from "@material-ui/core/Container";
@@ -22,6 +22,7 @@ const FormInput = ({ label, onChange }) => (
   />
 );
 
+// TODO: Add real for validation and legit error messages
 const SignupLoginForm = ({ signupForm, loginForm }) => {
   const classes = useStyles();
   const history = useHistory();
@@ -31,12 +32,13 @@ const SignupLoginForm = ({ signupForm, loginForm }) => {
   const [formState, setFormState] = useState({
     email: "",
     password: "",
+    username: "",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { email, password } = formState;
+    const { email, password, username } = formState;
     if (formError) {
       return setFormError(formError);
     }
@@ -45,7 +47,9 @@ const SignupLoginForm = ({ signupForm, loginForm }) => {
       setFormError("");
       setFormLoading(true);
       if (signupForm) {
-        await signup(email, password);
+        const userCredentials = await signup(email, password);
+        const { user } = userCredentials;
+        await user.updateProfile({ displayName: username });
       } else if (loginForm) {
         await login(email, password);
       }
@@ -83,6 +87,9 @@ const SignupLoginForm = ({ signupForm, loginForm }) => {
             </Grid>
             <Grid item xs={12}>
               <FormInput label="password" onChange={(e) => handleChange(e)} />
+            </Grid>
+            <Grid item xs={12}>
+              <FormInput label="username" onChange={(e) => handleChange(e)} />
             </Grid>
             <Button
               className={classes.signUp}

@@ -7,7 +7,6 @@ import useStyles from "./styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
 import ListItemLink from "../common/ListItemLink";
 import Typography from "@material-ui/core/Typography";
 import Drawer from "@material-ui/core/Drawer";
@@ -54,12 +53,7 @@ const NavBar = () => {
             />
           ))}
           {currentUser && (
-            <ListItemLink
-              key="skfh8es4h8hore8h"
-              primary="Logout"
-              to="/login"
-              onClick={handleLogout}
-            />
+            <ListItemLink primary="Logout" to="/login" onClick={handleLogout} />
           )}
         </List>
       </Drawer>
@@ -69,7 +63,7 @@ const NavBar = () => {
   const renderNavigation = () => (
     <>
       {navRoutes.map(({ text, to }) => (
-        <Link className={classes.navigationLink} to={to}>
+        <Link key={text} className={classes.navigationLink} to={to}>
           {text}
         </Link>
       ))}
