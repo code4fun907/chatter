@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignupLoginForm from "./components/SignupLoginForm/SignupLoginForm";
 import { useAuth } from "./contexts/AuthContext";
 
-const Chat = () => {
+const DashBoard = () => {
   const { currentUser } = useAuth();
 
   return <pre>{JSON.stringify(currentUser, null, 2)}</pre>;
@@ -22,7 +22,7 @@ const App = () => (
         <Route path="/login">
           <SignupLoginForm loginForm />
         </Route>
-        <Route path="/chat" component={Chat} />
+        <Route path="/dashboard" component={DashBoard} />
       </Switch>
     </Router>
   </>
