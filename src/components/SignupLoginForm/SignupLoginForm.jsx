@@ -12,13 +12,14 @@ import Fade from "@material-ui/core/Fade";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
-const FormInput = ({ label, onChange }) => (
+const FormInput = ({ label, onChange, ...rest }) => (
   <TextField
     fullWidth
     variant="outlined"
     label={label}
     name={label}
     onChange={onChange}
+    {...rest}
   />
 );
 
@@ -53,7 +54,7 @@ const SignupLoginForm = ({ signupForm, loginForm }) => {
       } else if (loginForm) {
         await login(email, password);
       }
-      history.push("/chat");
+      history.push("/");
     } catch {
       setFormError("Unexpected error. try again");
     }
@@ -86,13 +87,19 @@ const SignupLoginForm = ({ signupForm, loginForm }) => {
               <FormInput label="email" onChange={(e) => handleChange(e)} />
             </Grid>
             <Grid item xs={12}>
-              <FormInput label="password" onChange={(e) => handleChange(e)} />
+              <FormInput
+                type="password"
+                label="password"
+                onChange={(e) => handleChange(e)}
+              />
             </Grid>
-            <Grid item xs={12}>
-              <FormInput label="username" onChange={(e) => handleChange(e)} />
-            </Grid>
+            {signupForm && (
+              <Grid item xs={12}>
+                <FormInput label="username" onChange={(e) => handleChange(e)} />
+              </Grid>
+            )}
             <Button
-              className={classes.signUp}
+              className={classes.signupLoginButton}
               color="primary"
               variant="contained"
               fullWidth

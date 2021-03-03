@@ -1,4 +1,4 @@
-import { navRoutes } from "../../utils/routeUtils";
+import { navRoutes, privateNavRoutes } from "../../utils/routeUtils";
 import { useAuth } from "../../contexts/AuthContext";
 import { useState } from "react";
 import { useTheme } from "@material-ui/core/styles";
@@ -52,9 +52,15 @@ const NavBar = () => {
               onClick={toggleSideBar}
             />
           ))}
-          {currentUser && (
-            <ListItemLink primary="Logout" to="/login" onClick={handleLogout} />
-          )}
+          {currentUser &&
+            privateNavRoutes.map(({ text, to }) => (
+              <ListItemLink
+                key={text}
+                primary={text}
+                to={to}
+                onClick={text === "Logout" ? handleLogout : toggleSideBar}
+              />
+            ))}
         </List>
       </Drawer>
     </>
@@ -67,15 +73,16 @@ const NavBar = () => {
           {text}
         </Link>
       ))}
-      {currentUser && (
-        <Link
-          to="/login"
-          className={classes.navigationLink}
-          onClick={handleLogout}
-        >
-          Logout
-        </Link>
-      )}
+      {currentUser &&
+        privateNavRoutes.map(({ text, to }) => (
+          <Link
+            key={text}
+            className={classes.navigationLink}
+            onClick={text === "Logout" ? handleLogout : toggleSideBar}
+          >
+            {text}
+          </Link>
+        ))}
     </>
   );
 

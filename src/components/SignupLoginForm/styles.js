@@ -15,7 +15,7 @@ export default makeStyles((theme) => ({
     width: "100%",
     marginBottom: theme.spacing(2),
   },
-  signUp: {
+  signupLoginButton: {
     marginTop: theme.spacing(2),
   },
   redirectText: {
