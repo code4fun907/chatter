@@ -10,6 +10,8 @@ const useChatMessages = () => {
     chatMessagesRef.on("value", (snapshot) => {
       setChatMessages(snapshot.val());
     });
+
+    return () => chatMessages.off("value");
   }, []);
 
   return chatMessages;
