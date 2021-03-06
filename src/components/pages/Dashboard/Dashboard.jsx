@@ -1,12 +1,10 @@
 import { useAuth } from "../../../contexts/AuthContext";
 import { useState } from "react";
-import { deleteChatMessage, addChatMessage } from "../../../api/chatMessages";
-import useChatMessages from "../../../hooks/useChatMessages";
-import ChatMessage from "../../ChatMessage";
+import { addChatMessage } from "../../../api/chatMessages";
+import ChatContainer from "../../ChatContainer";
 
 const Dashboard = () => {
   const { currentUser } = useAuth();
-  const chatMessages = useChatMessages();
   const [message, setMessage] = useState();
 
   const handleSendMessage = () => {
@@ -21,7 +19,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h1>{currentUser.displayName ? currentUser.displayName : "nonam"}</h1>
+      <h1>{currentUser.displayName ? currentUser.displayName : "noname"}</h1>
       <input
         type="text"
         placeholder="New Message"
@@ -29,15 +27,7 @@ const Dashboard = () => {
       />
       <button onClick={handleSendMessage}>send message</button>
 
-      {chatMessages &&
-        Object.entries(chatMessages).map(([key, value]) => (
-          <ChatMessage
-            key={key}
-            message={value}
-            currentUserId={currentUser.uid}
-            id={key}
-          />
-        ))}
+      <ChatContainer />
     </div>
   );
 };

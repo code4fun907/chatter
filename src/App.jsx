@@ -3,7 +3,7 @@ import Dashboard from "./components/pages/Dashboard";
 import NavBar from "./components/NavBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import PrivateRoute from "./components/common/PrivateRoute";
-import SignupLoginForm from "./components/SignupLoginForm/SignupLoginForm";
+import SignupLoginForm from "./components/SignupLoginForm";
 
 const App = () => (
   <>
