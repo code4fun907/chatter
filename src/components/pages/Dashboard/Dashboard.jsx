@@ -35,6 +35,7 @@ const Dashboard = () => {
             key={key}
             message={value}
             currentUserId={currentUser.uid}
+            id={key}
           />
         ))}
     </div>

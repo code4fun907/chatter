@@ -27,4 +27,19 @@ export default makeStyles((theme) => ({
     right: 0,
     top: 0,
   },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modalPaper: {
+    background: "white",
+    padding: ".8em",
+  },
+  modalBox: {
+    marginTop: ".8em",
+  },
+  editButton: {
+    marginRight: ".8em",
+  },
 }));

@@ -79,6 +79,7 @@ const NavBar = () => {
             key={text}
             className={classes.navigationLink}
             onClick={text === "Logout" ? handleLogout : toggleSideBar}
+            to={to}
           >
             {text}
           </Link>
